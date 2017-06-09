@@ -17,9 +17,9 @@ public class ConfigCreator {
     }
 
     @SuppressWarnings("WeakerAccess")
-    public File configf, playerdataf;
+    public File configf, playerdataf, inventoriesf;
     @SuppressWarnings("WeakerAccess")
-    public FileConfiguration config, playerdata;
+    public FileConfiguration config, playerdata, inventories;
 
     public void createConfig() {
 
@@ -57,5 +57,27 @@ public class ConfigCreator {
         } catch (IOException | InvalidConfigurationException e) {
             e.printStackTrace();
         }
+    }
+
+    public void createInventoriesConfig() throws IOException {
+        inventoriesf = new File(plugin.getDataFolder(), "inventories.yml");
+
+        if (!inventoriesf.exists()) {
+            //noinspection ResultOfMethodCallIgnored
+            inventoriesf.getParentFile().mkdirs();
+            plugin.saveResource("playerdata.yml", false);
+        }
+
+        inventories = new YamlConfiguration();
+
+        try {
+            inventories.load(inventoriesf);
+        } catch (IOException | InvalidConfigurationException e) {
+            e.printStackTrace();
+        }
+        inventories.set("Inventories.Freeze.Title", "&bFreeze Menu");
+        inventories.set("Inventories.Freeze Players.Title", "&bFreeze Players Menu");
+        inventories.set("Inventories.Unfreeze Players.Title", "&bUnfreeze Players Menu");
+        inventories.save(inventoriesf);
     }
 }

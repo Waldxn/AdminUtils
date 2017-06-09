@@ -31,7 +31,7 @@ public class FreezeAll implements CommandExecutor {
             }
 
             for (Player p : Bukkit.getOnlinePlayers()) {
-                if (!(playerdata.getPlayerDataBoolean("Players." + p.getName() + ".Frozen"))) {
+                if (!(playerdata.getPlayerDataBoolean("Players." + p.getName() + ".Frozen")) && !(p.hasPermission("utils.freezeall.bypass"))) {
                     try {
                         playerdata.setPlayerDataValue("Players." + p.getName() + ".Frozen", true);
                         playerdata.getPlayerDataConfig().save(cc.playerdataf);
