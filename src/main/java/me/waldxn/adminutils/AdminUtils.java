@@ -28,6 +28,8 @@ public class AdminUtils extends JavaPlugin {
         getCommand("nickname").setExecutor(new Nickname(playerdata, cc));
         getCommand("freeze").setExecutor(new Freeze(playerdata, cc));
         getCommand("unfreeze").setExecutor(new Unfreeze(playerdata, cc));
+        getCommand("freezeall").setExecutor(new FreezeAll(playerdata, cc));
+        getCommand("unfreezeall").setExecutor(new UnfreezeAll(playerdata, cc));
     }
 
     @Override

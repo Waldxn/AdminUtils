@@ -13,3 +13,7 @@ commands:
     description: Freeze a specific player
   unfreeze:
     description: Unfreeze a specific player
+  freezeall:
+    description: Freeze the entire server
+  unfreezeall:
+  description: Unfreeze the entire server
