@@ -28,3 +28,5 @@ permissions:
     description: Permission node to /freeze, /unfreeze
   utils.freezeall:
     description: Permission node to /freezeall, /unfreezeall
+  utils.freezeall.bypass:
+    description: Permission node to bypass /freezeall
