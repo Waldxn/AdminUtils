@@ -36,6 +36,8 @@ public class Mute implements CommandExecutor, Listener {
         createMenuItems();
     }
 
+    /* Commands */
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String alias, String[] args) {
 
@@ -103,6 +105,8 @@ public class Mute implements CommandExecutor, Listener {
         unmute.setItemMeta(unmutem);
         exit.setItemMeta(exitm);
     }
+
+    /* GUI */
 
     @EventHandler
     public void onMuteClick(InventoryClickEvent event) {
