@@ -59,6 +59,8 @@ public class Freeze implements CommandExecutor, Listener {
 
     }
 
+    /* Commands */
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String alias, String[] args) {
 
@@ -104,6 +106,8 @@ public class Freeze implements CommandExecutor, Listener {
         }
         return false;
     }
+
+    /* GUI */
 
     @EventHandler
     public void freezeMenuClick(InventoryClickEvent event) {
