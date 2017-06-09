@@ -24,25 +24,26 @@ public class UnfreezeAll implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String alias, String[] args) {
 
-        if (args.length != 0) {
-            sender.sendMessage(ChatColor.BLUE + "Usage: /unfreezeall");
-            return false;
-        }
+        if (sender.hasPermission("utils.freezeall")) {
+            if (args.length != 0) {
+                sender.sendMessage(ChatColor.BLUE + "Usage: /unfreezeall");
+                return false;
+            }
 
-        for (Player p : Bukkit.getOnlinePlayers()) {
-            if (playerdata.getPlayerDataBoolean("Players." + p.getName() + ".Frozen")) {
-                try {
-                    playerdata.setPlayerDataValue("Players." + p.getName() + ".Frozen", false);
-                    playerdata.getPlayerDataConfig().save(cc.playerdataf);
-                    p.sendMessage(ChatColor.BLUE + "The entire server has been unfrozen!");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    return false;
+            for (Player p : Bukkit.getOnlinePlayers()) {
+                if (playerdata.getPlayerDataBoolean("Players." + p.getName() + ".Frozen")) {
+                    try {
+                        playerdata.setPlayerDataValue("Players." + p.getName() + ".Frozen", false);
+                        playerdata.getPlayerDataConfig().save(cc.playerdataf);
+                        p.sendMessage(ChatColor.BLUE + "The entire server has been unfrozen!");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        return false;
+                    }
                 }
             }
+            sender.sendMessage(ChatColor.BLUE + "You have unfrozen the entire server!");
         }
-        sender.sendMessage(ChatColor.BLUE + "You have unfrozen the entire server!");
-
         return true;
     }
 }

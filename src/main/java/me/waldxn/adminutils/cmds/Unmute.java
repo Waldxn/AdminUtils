@@ -24,6 +24,7 @@ public class Unmute implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String alias, String[] args) {
 
+        if (sender.hasPermission("utils.mute")) {
             if (args.length != 1) {
                 sender.sendMessage(ChatColor.BLUE + "Usage: /mute [player]");
                 return false;
@@ -52,5 +53,7 @@ public class Unmute implements CommandExecutor {
                 sender.sendMessage(ChatColor.BLUE + target.getName() + " is not muted!");
                 return false;
             }
+        }
+        return false;
     }
 }

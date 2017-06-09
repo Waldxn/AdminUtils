@@ -16,4 +16,15 @@ commands:
   freezeall:
     description: Freeze the entire server
   unfreezeall:
-  description: Unfreeze the entire server
+    description: Unfreeze the entire server
+permissions:
+  utils.mute:
+    description: Permission node to /mute, /unmute
+  utils.nickname:
+    description: Permission node to /nickname
+  utils.nickname.others:
+    description: Permission node to /nickname [nickname] [target-player]
+  utils.freeze:
+    description: Permission node to /freeze, /unfreeze
+  utils.freezeall:
+    description: Permission node to /freezeall, /unfreezeall
