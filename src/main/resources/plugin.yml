@@ -1,0 +1,3 @@
+name: AdminUtils
+version: ${project.version}
+main: me.waldxn.adminutils.AdminUtils
