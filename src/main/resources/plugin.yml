@@ -1,3 +1,15 @@
 name: AdminUtils
 version: ${project.version}
 main: me.waldxn.adminutils.AdminUtils
+author: Waldxn
+commands:
+  mute:
+    description: Mute a player
+  unmute:
+    description: Unmute a player
+  nickname:
+    description: Give player a nickname
+  freeze:
+    description: Freeze a specific player
+  unfreeze:
+    description: Unfreeze a specific player
