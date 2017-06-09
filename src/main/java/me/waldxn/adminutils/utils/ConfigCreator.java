@@ -75,9 +75,15 @@ public class ConfigCreator {
         } catch (IOException | InvalidConfigurationException e) {
             e.printStackTrace();
         }
-        inventories.set("Inventories.Freeze.Title", "&bFreeze Menu");
-        inventories.set("Inventories.Freeze Players.Title", "&bFreeze Players Menu");
-        inventories.set("Inventories.Unfreeze Players.Title", "&bUnfreeze Players Menu");
-        inventories.save(inventoriesf);
+        if (!(inventories.get("Version").equals("1.1.0"))) {
+            inventories.set("Inventories.Freeze.Title", "&bFreeze Menu");
+            inventories.set("Inventories.Freeze Players.Title", "&bFreeze Players Menu");
+            inventories.set("Inventories.Unfreeze Players.Title", "&bUnfreeze Players Menu");
+            inventories.set("Inventories.Mute.Title", "&bMute Menu");
+            inventories.set("Inventories.Mute Players.Title", "&bMute Players Menu");
+            inventories.set("Inventories.Unmute Players.Title", "&bUnmute Players Menu");
+            inventories.set("Version", "1.1.0");
+            inventories.save(inventoriesf);
+        }
     }
 }

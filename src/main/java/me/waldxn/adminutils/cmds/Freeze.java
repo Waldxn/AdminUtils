@@ -33,30 +33,7 @@ public class Freeze implements CommandExecutor, Listener {
         this.cc = creator;
         this.playerdata = pdc;
         this.inventories = ic;
-
-        frz = new ItemStack(Material.WOOL, 1, (short) 3);
-        unfrz = new ItemStack(Material.WOOL, 1, (short) 3);
-        frzall = new ItemStack(Material.WOOL, 1);
-        unfrzall = new ItemStack(Material.WOOL, 1);
-        exit = new ItemStack(Material.BED, 1);
-
-        frzm = frz.getItemMeta();
-        unfrzm = unfrz.getItemMeta();
-        frzallm = frzall.getItemMeta();
-        unfrzallm = unfrzall.getItemMeta();
-        exitm = exit.getItemMeta();
-
-        frzm.setDisplayName(ChatColor.AQUA + "Freeze a player");
-        frz.setItemMeta(frzm);
-        unfrzm.setDisplayName(ChatColor.AQUA + "Unfreeze a player");
-        unfrz.setItemMeta(unfrzm);
-        frzallm.setDisplayName(ChatColor.AQUA + "Freeze the entire server");
-        frzall.setItemMeta(frzallm);
-        unfrzallm.setDisplayName(ChatColor.AQUA + "Unfreeze the entire server");
-        unfrzall.setItemMeta(unfrzallm);
-        exitm.setDisplayName(ChatColor.GOLD + "Close Menu");
-        exit.setItemMeta(exitm);
-
+        createMenuItems();
     }
 
     /* Commands */
@@ -107,6 +84,36 @@ public class Freeze implements CommandExecutor, Listener {
         return false;
     }
 
+    /* GUI Items */
+
+    private void createMenuItems() {
+        frz = new ItemStack(Material.WOOL, 1, (short) 3);
+        unfrz = new ItemStack(Material.WOOL, 1, (short) 3);
+        frzall = new ItemStack(Material.WOOL, 1);
+        unfrzall = new ItemStack(Material.WOOL, 1);
+        exit = new ItemStack(Material.BED, 1);
+
+        frzm = frz.getItemMeta();
+        unfrzm = unfrz.getItemMeta();
+        frzallm = frzall.getItemMeta();
+        unfrzallm = unfrzall.getItemMeta();
+        exitm = exit.getItemMeta();
+
+        frzm.setDisplayName(ChatColor.AQUA + "Freeze a player");
+        unfrzm.setDisplayName(ChatColor.AQUA + "Unfreeze a player");
+        frzallm.setDisplayName(ChatColor.AQUA + "Freeze the entire server");
+        unfrzallm.setDisplayName(ChatColor.AQUA + "Unfreeze the entire server");
+        exitm.setDisplayName(ChatColor.GOLD + "Close Menu");
+
+        frz.setItemMeta(frzm);
+        unfrz.setItemMeta(unfrzm);
+        frzall.setItemMeta(frzallm);
+        unfrzall.setItemMeta(unfrzallm);
+        exit.setItemMeta(exitm);
+    }
+
+
+
     /* GUI */
 
     @EventHandler
@@ -114,6 +121,11 @@ public class Freeze implements CommandExecutor, Listener {
         ItemStack clicked = event.getCurrentItem();
         ItemMeta clickedm = clicked.getItemMeta();
         Player player = (Player) event.getWhoClicked();
+
+        if (clicked.getType() == Material.AIR) {
+            event.setCancelled(true);
+            return;
+        }
 
         if (clickedm.equals(exitm)) {
             player.closeInventory();
@@ -173,6 +185,12 @@ public class Freeze implements CommandExecutor, Listener {
 
     @EventHandler
     public void freezePlayerMenus(InventoryClickEvent event) {
+
+        if (event.getCurrentItem().getType() == Material.AIR) {
+            event.setCancelled(true);
+            return;
+        }
+
         if (event.getClickedInventory().getName().equals(ChatColor.translateAlternateColorCodes
                 ('&', inventories.getInventoriesString("Inventories.Freeze Players.Title")))) {
             ItemMeta skull = event.getCurrentItem().getItemMeta();

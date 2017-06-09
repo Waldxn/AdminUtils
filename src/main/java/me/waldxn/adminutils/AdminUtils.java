@@ -20,6 +20,7 @@ public class AdminUtils extends JavaPlugin {
     private PlayerDataConfig playerdata = new PlayerDataConfig(cc);
     private InventoriesConfig ic = new InventoriesConfig(cc);
     private Freeze freeze = new Freeze(playerdata, cc, ic);
+    private Mute mute = new Mute(playerdata, cc, ic);
 
     @Override
     public void onEnable() {
@@ -47,10 +48,11 @@ public class AdminUtils extends JavaPlugin {
         pm.registerEvents(new PlayerMoveListener(playerdata, cc, this), this);
         pm.registerEvents(new PlayerJoinListener(playerdata, cc), this);
         pm.registerEvents(freeze, this);
+        pm.registerEvents(mute, this);
     }
 
     private void registerCommands(){
-        getCommand("mute").setExecutor(new Mute(playerdata, cc));
+        getCommand("mute").setExecutor(mute);
         getCommand("unmute").setExecutor(new Unmute(playerdata, cc));
         getCommand("nickname").setExecutor(new Nickname(playerdata, cc));
         getCommand("freeze").setExecutor(freeze);
