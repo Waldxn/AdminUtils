@@ -20,16 +20,9 @@ public class AdminUtils extends JavaPlugin {
     public void onEnable() {
         Logger logger = getLogger();
         logger.info("Enabling AdminUtils");
-        cc.createConfig();
-        cc.createPlayerDataConfig();
+        createConfigFiles();
         registerEvents();
-        getCommand("mute").setExecutor(new Mute(playerdata, cc));
-        getCommand("unmute").setExecutor(new Unmute(playerdata, cc));
-        getCommand("nickname").setExecutor(new Nickname(playerdata, cc));
-        getCommand("freeze").setExecutor(new Freeze(playerdata, cc));
-        getCommand("unfreeze").setExecutor(new Unfreeze(playerdata, cc));
-        getCommand("freezeall").setExecutor(new FreezeAll(playerdata, cc));
-        getCommand("unfreezeall").setExecutor(new UnfreezeAll(playerdata, cc));
+        registerCommands();
     }
 
     @Override
@@ -43,5 +36,20 @@ public class AdminUtils extends JavaPlugin {
         pm.registerEvents(playerdata, this);
         pm.registerEvents(new ChatListener(playerdata), this);
         pm.registerEvents(new PlayerMoveListener(playerdata, cc, this), this);
+    }
+
+    private void registerCommands(){
+        getCommand("mute").setExecutor(new Mute(playerdata, cc));
+        getCommand("unmute").setExecutor(new Unmute(playerdata, cc));
+        getCommand("nickname").setExecutor(new Nickname(playerdata, cc));
+        getCommand("freeze").setExecutor(new Freeze(playerdata, cc));
+        getCommand("unfreeze").setExecutor(new Unfreeze(playerdata, cc));
+        getCommand("freezeall").setExecutor(new FreezeAll(playerdata, cc));
+        getCommand("unfreezeall").setExecutor(new UnfreezeAll(playerdata, cc));
+    }
+
+    private void createConfigFiles(){
+        cc.createConfig();
+        cc.createPlayerDataConfig();
     }
 }
