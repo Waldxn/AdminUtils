@@ -2,6 +2,7 @@ package me.waldxn.adminutils;
 
 import me.waldxn.adminutils.cmds.*;
 import me.waldxn.adminutils.events.ChatListener;
+import me.waldxn.adminutils.events.PlayerJoinListener;
 import me.waldxn.adminutils.events.PlayerMoveListener;
 import me.waldxn.adminutils.utils.ConfigCreator;
 import me.waldxn.adminutils.utils.PlayerDataConfig;
@@ -36,6 +37,7 @@ public class AdminUtils extends JavaPlugin {
         pm.registerEvents(playerdata, this);
         pm.registerEvents(new ChatListener(playerdata), this);
         pm.registerEvents(new PlayerMoveListener(playerdata, cc, this), this);
+        pm.registerEvents(new PlayerJoinListener(playerdata, cc), this);
     }
 
     private void registerCommands(){
